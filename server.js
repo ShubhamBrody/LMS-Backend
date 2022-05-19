@@ -30,7 +30,7 @@ app.use(cors());
 const router = express.Router();
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World This is the backend for my Library Management System!");
 });
 
 app.post("/register", (req, res) => {
