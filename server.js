@@ -22,7 +22,7 @@ mongoose
     console.log("No Internet!");
   });
 
-port = process.env.PORT;
+port = process.env.PORT || 8080;
 
 app.use(express.json({ limit: "50mb" }));
 app.use(cors());
@@ -101,7 +101,7 @@ app.post("/login", (req, res) => {
   }
   Logger.findOne({ email: req.body.email }, (err, user) => {
     if (err) return res.status(500).send("Error on the server.");
-    console.log(user.username);
+    // console.log(user.username);
     if (!user)
       return res
         .status(404)
@@ -123,7 +123,7 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/verifydetails", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   var Logger = null;
   if (req.body.isAdmin) {
     Logger = Admin;
