@@ -27,8 +27,6 @@ port = process.env.PORT || 8080;
 app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
-const router = express.Router();
-
 app.get("/", (req, res) => {
   res.send("Hello World This is the backend for my Library Management System!");
 });
@@ -286,9 +284,10 @@ app.get("/book/:filter", (req, res) => {
 
 app.get("/bookreturns/:filter", (req, res) => {
   var filter = req.params.filter;
-  var todaysdate = new Date().toISOString().split("T")[0];
-  var obj = { bookReturnDate: todaysdate };
-  if(filter !== 'NONE') obj['email'] = filter;
+  // var todaysdate = new Date().toISOString().split("T")[0];
+  // var obj = { bookReturnDate: todaysdate };
+  var obj = {};
+  if(filter !== 'NONE') {obj['email'] = filter;}
   console.log("OBJ", obj);
   Bookings.find(obj, (err, results) => {
     if (err) return res.status(500).send("Error on the server.");
